@@ -1,12 +1,27 @@
 ﻿using System;
+using System.IO;
 
-namespace dotnetcore
+namespace Sintaxis_1
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            try
+            {
+                Lenguaje a = new Lenguaje("C:\\Users\\marco\\OneDrive\\Escritorio\\Lenguajes y automatas 1\\Sintaxis_1\\examen.cpp");
+
+                //a.Programa();
+                while(!a.FinArchivo())
+                {
+                    a.NextToken();
+                }
+                a.cerrar();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Fin de compilacion");
+            }
         }
     }
 }
