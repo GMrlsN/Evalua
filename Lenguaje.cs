@@ -1,16 +1,8 @@
 using System;
 
-//Requerimiento 1.- Grabar la fecha y hora en el log
-//Requerimiento 2.- Programar la produccion For -> for(Asignacion Condicion; Incremento) Bloque de instruccones | Intruccion 
-//Requerimiento 3.- Programar la produccion Incremento -> Identificador ++ | --
-//Requerimiento 4.- Programar la produccion Switch -> switch (Expresion) {Lista de casos}
-//Requerimiento 5.- Programar la produccion ListaDeCasos -> case Expresion: listaInstruccionesCase (break;)? (ListaDeCasos)?
-//Requerimiento 6.- Incluir en el Switch un default optativo
-//Requerimiento 7.- Levantar una excepcion cuando el archivo de prueba.cpp no exista
-//Requerimiento 8.- Si el programa a compilar es suma.cpp debera generar un suma.log
-//Requerimiento 9.- Es necesario que el error lexico o sintactico indique el numero de liena en el que ocurrio
+//Requerimiento 1.- Eliminar las dobles comillas del printf
 
-namespace Sintaxis_1
+namespace Evalua
 {
     public class Lenguaje : Sintaxis
     {
@@ -45,7 +37,6 @@ namespace Sintaxis_1
                     match("h");
                 }
                 match(">");
-                if (getContenido() == "#")
                 Libreria();
             }
         }
@@ -72,7 +63,7 @@ namespace Sintaxis_1
                 Lista_identificadores();
             }
         }
-        //Bloque de instrucciones -> {lista de intrucciones?}
+        //Bloque de instrucciones -> {listaIntrucciones?}
         private void BloqueInstrucciones()
         {
             match("{");
@@ -144,7 +135,7 @@ namespace Sintaxis_1
         private void Asignacion()
         {
             match(Tipos.Identificador);
-            match("=");
+            match(Tipos.Asignacion);
             if (getClasificacion() == Tipos.Cadena)
             {
                 match(Tipos.Cadena);
@@ -191,7 +182,7 @@ namespace Sintaxis_1
             match(")");
             match(";");
         }
-        //For -> for(Asignacion Condicion; Incremento) Bloque de instruccones | Intruccion 
+        //For -> for(Asignacion Condicion; Incremento) BloqueInstruccones | Intruccion 
         private void For()
         {
             match("for");
@@ -310,6 +301,7 @@ namespace Sintaxis_1
         {
             match("printf");
             match("(");
+            Console.Write(getContenido());
             match(Tipos.Cadena);
             match(")");
             match(";");

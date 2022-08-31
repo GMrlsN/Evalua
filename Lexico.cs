@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace Sintaxis_1
+namespace Evalua
 {
     public class Lexico : Token
     {
@@ -59,9 +59,9 @@ namespace Sintaxis_1
         public Lexico()
         {
             linea = 1;
-            string path = "C:\\Users\\marco\\OneDrive\\Escritorio\\Lenguajes y automatas 1\\Sintaxis_1\\prueba.cpp";
+            string path = "C:\\Users\\marco\\OneDrive\\Escritorio\\Evalua\\prueba.cpp";
             bool existencia = File.Exists(path);
-            log = new StreamWriter("C:\\Users\\marco\\OneDrive\\Escritorio\\Lenguajes y automatas 1\\Sintaxis_1\\prueba.Log"); 
+            log = new StreamWriter("C:\\Users\\marco\\OneDrive\\Escritorio\\Evalua\\prueba.Log"); 
             log.AutoFlush = true;
             log.WriteLine("Primer constructor");
             log.WriteLine("Archivo: prueba.cpp");
@@ -69,7 +69,7 @@ namespace Sintaxis_1
             //Investigar como checar si un archivo existe o no existe 
             if (existencia == true)
             {
-                archivo = new StreamReader("C:\\Users\\marco\\OneDrive\\Escritorio\\Lenguajes y automatas 1\\Sintaxis_1\\prueba.cpp");
+                archivo = new StreamReader(path);
             }
             else
             {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Sintaxis_1
+namespace Evalua
 {
     public class Program
     {
@@ -9,13 +9,24 @@ namespace Sintaxis_1
         {
             try
             {
-                Lenguaje a = new Lenguaje("C:\\Users\\marco\\OneDrive\\Escritorio\\Lenguajes y automatas 1\\Sintaxis_1\\examen.cpp");
+                Lenguaje a = new Lenguaje();
 
-                //a.Programa();
-                while(!a.FinArchivo())
-                {
-                    a.NextToken();
-                }
+                a.Programa();
+
+
+                
+                /*a.match("#");
+                a.match("include");
+                a.match("<");
+                a.match(Token.Tipos.Identificador);
+                a.match(".");
+                a.match("h");
+                a.match(">"); */
+                
+                //while(!a.FinArchivo())
+                //{
+                  //  a.NextToken();
+                //}
                 a.cerrar();
             }
             catch (Exception e)

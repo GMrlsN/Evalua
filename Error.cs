@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace Sintaxis_1
+namespace Evalua
 {
     public class Error : Exception
     {

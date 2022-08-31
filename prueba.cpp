@@ -1,4 +1,4 @@
-#include <iostream>
+#include <iostream.h>
 #include <stdio.h>
 #include <conio.h>
 float resultado;
@@ -20,3 +20,6 @@ void main(){
                 {
                     a = 0;
                 } while (6 == 6);
+        }
+    }
+}

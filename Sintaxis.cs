@@ -1,6 +1,6 @@
 using System;
 
-namespace Sintaxis_1
+namespace Evalua
 {
     public class Sintaxis : Lexico
     {
