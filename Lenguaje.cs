@@ -136,14 +136,7 @@ namespace Evalua
         {
             match(Tipos.Identificador);
             match(Tipos.Asignacion);
-            if (getClasificacion() == Tipos.Cadena)
-            {
-                match(Tipos.Cadena);
-            }
-            else
-            {
-                Expresion();
-            }
+            Expresion();
             match(";");
         }
 
