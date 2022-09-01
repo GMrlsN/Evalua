@@ -60,22 +60,30 @@ namespace Evalua
         {
             if (getClasificacion() == Tipos.TipoDato)
             {
+                Variable.TipoDato tipo = Variable.TipoDato.Char;
+                switch(getContenido()){
+                    case "int":
+                        match("char");
+                        break;
+                }
                 match(Tipos.TipoDato);
-                Lista_identificadores();
+                Lista_identificadores(tipo);
                 match(Tipos.FinSentencia);
                 Variables();
             }
         }
 
          //Lista_identificadores -> identificador (,Lista_identificadores)?
-        private void Lista_identificadores()
+        private void Lista_identificadores(Variable.TipoDato tipo)
         {
-            addVariable(getContenido(), Variable.TipoDato.Char);
+            if(getClasificacion() == Token.Identificador){
+                addVariable(getContenido(), tipo);
+            }
             match(Tipos.Identificador);
             if (getContenido() == ",")
             {
                 match(",");
-                Lista_identificadores();
+                Lista_identificadores(tipo);
             }
         }
         //Bloque de instrucciones -> {listaIntrucciones?}
