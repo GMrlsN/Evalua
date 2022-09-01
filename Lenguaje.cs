@@ -1,11 +1,13 @@
 using System;
-
+using System.Collections.Generic;
 //Requerimiento 1.- Eliminar las dobles comillas del printf
+//
 
 namespace Evalua
 {
     public class Lenguaje : Sintaxis
     {
+        List<Variable> variables = new List<Variable>();
         public Lenguaje()
         {
 
@@ -14,12 +16,24 @@ namespace Evalua
         {
 
         }
+        private void addVariable(String nombre,Variable.TipoDato tipo){
+            variables.Add(new Variable(nombre, tipo));
+        }
+
+        private void displayVariables(){
+            foreach (Variable v in variables)
+            {
+                log.WriteLine(v.getNombre() + " - " + v.getTipo().ToString());
+            }
+        }
+
         //Programa  -> Librerias? Variables? Main
         public void Programa()
         {
             Libreria();
             Variables();
             Main();
+            displayVariables();
         }
 
         //Librerias -> #include<identificador(.h)?> Librerias?
@@ -56,6 +70,7 @@ namespace Evalua
          //Lista_identificadores -> identificador (,Lista_identificadores)?
         private void Lista_identificadores()
         {
+            addVariable(getContenido(), Variable.TipoDato.Char);
             match(Tipos.Identificador);
             if (getContenido() == ",")
             {

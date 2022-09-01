@@ -1,6 +1,6 @@
 Primer constructor
 Archivo: prueba.cpp
-8/31/2022 9:49:27 PM
+9/1/2022 2:46:16 PM
 # | Caracter
 include | Identificador
 < | OperadorRelacional
@@ -67,3 +67,12 @@ a | Identificador
 / | OperadorFactor
 2 | Numero
 ; | FinSentencia
+resultado - Char
+a - Char
+b - Char
+c - Char
+d - Char
+opcion - Char
+radio - Char
+altura - Char
+x - Char
