@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
-//Requerimiento 1.- Eliminar las dobles comillas del printf
-//
-
+//Requerimiento 1.- Eliminar las dobles comillas del printf e interpretar las secuencias
+//                  dentro de la cadena
+//Requerimiento 2.- Marcar los errores sintacticos cuando la variable no exista
+//                  que no este declarada
 namespace Evalua
 {
     public class Lenguaje : Sintaxis
@@ -169,6 +170,12 @@ namespace Evalua
         //Asignacion -> identificador = cadena | Expresion;
         private void Asignacion()
         {
+            //Requerimiento 2
+            //Si no existe la variable es que no fue declarada
+            //Hay que levantar la excepcion
+            if(existeVariable(getContenido())){
+
+            }
             match(Tipos.Identificador);
             match(Tipos.Asignacion);
             Expresion();
@@ -233,6 +240,9 @@ namespace Evalua
         //Incremento -> Identificador ++ | --
         private void Incremento()
         {
+            //Requerimiento 2
+            //Si no existe la variable es que no fue declarada
+            //Hay que levantar la excepcion
             match(Tipos.Identificador);
             if(getContenido() == "+")
             {
@@ -394,6 +404,11 @@ namespace Evalua
             }
             else if (getClasificacion() == Tipos.Identificador)
             {
+                //Requerimiento 2
+                //Si no existe la variable es que no fue declarada
+                //Hay que levantar la excepcion//Requerimiento 2
+                //Si no existe la variable es que no fue declarada
+                //Hay que levantar la excepcion
                 match(Tipos.Identificador);
             }
             else
