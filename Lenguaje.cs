@@ -88,7 +88,7 @@ namespace Evalua
                     addVariable(getContenido(), tipo);
                 }
                 else{
-                    throw new Error("Error de sintaxis, variable duplicada " +getContenido() +" en linea: "+linea , log);
+                    throw new Error("Error de sintaxis, variable duplicada <" +getContenido() +"> en linea: "+linea , log);
                 }
             }
             match(Tipos.Identificador);

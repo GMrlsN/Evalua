@@ -29,9 +29,9 @@ namespace Evalua
                 //}
                 a.cerrar();
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Console.WriteLine("Fin de compilacion");
+                //Console.WriteLine();
             }
         }
     }

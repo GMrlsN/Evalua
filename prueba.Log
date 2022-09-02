@@ -1,6 +1,6 @@
 Primer constructor
 Archivo: prueba.cpp
-9/2/2022 2:21:44 PM
+9/2/2022 2:25:35 PM
 # | Caracter
 include | Identificador
 < | OperadorRelacional
@@ -25,5 +25,14 @@ h | Identificador
 float | TipoDato
 resultado | Identificador
 ; | FinSentencia
-int | TipoDato
-Error de sintaxis, se espera un char en linea: 5
+char | TipoDato
+a | Identificador
+, | Caracter
+b | Identificador
+, | Caracter
+c | Identificador
+, | Caracter
+d | Identificador
+, | Caracter
+a | Identificador
+Error de sintaxis, variable duplicada <a> en linea: 5

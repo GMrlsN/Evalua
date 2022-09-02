@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <conio.h>
 float resultado;
-int a,b,c,d;
+char a,b,c,d,a,b,c,d;
 char opcion;
 float radio, altura, x;
 // Este programa calcula el volumen de un cilindro.

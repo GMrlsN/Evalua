@@ -2,7 +2,7 @@ namespace Evalua
 {
     public class Token
     {
-        private string Contenido;
+        private string Contenido = "";
         private Tipos Clasificacion;
         public enum Tipos
         {
