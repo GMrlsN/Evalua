@@ -26,7 +26,14 @@ namespace Evalua
                 log.WriteLine(v.getNombre() + " - " + v.getTipo().ToString());
             }
         }
-
+        private bool existeVariable(string nombre){
+            foreach (Variable v in variables)
+            {
+                if (v.getNombre().Equals(nombre))
+                       return true;
+            }
+            return false;
+        }
         //Programa  -> Librerias? Variables? Main
         public void Programa()
         {
@@ -76,8 +83,13 @@ namespace Evalua
          //Lista_identificadores -> identificador (,Lista_identificadores)?
         private void Lista_identificadores(Variable.TipoDato tipo)
         {
-            if(getClasificacion() == Token.Identificador){
-                addVariable(getContenido(), tipo);
+            if(getClasificacion() == Tipos.Identificador){
+                if(!existeVariable(getContenido())){
+                    addVariable(getContenido(), tipo);
+                }
+                else{
+                    throw new Error("Error de sintaxis, variable duplicada " +getContenido() +" en linea: "+linea , log);
+                }
             }
             match(Tipos.Identificador);
             if (getContenido() == ",")

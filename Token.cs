@@ -31,6 +31,5 @@ namespace Evalua
         {
             return this.Clasificacion;
         }
-
     }
 }
