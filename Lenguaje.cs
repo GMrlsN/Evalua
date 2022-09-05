@@ -176,6 +176,8 @@ namespace Evalua
             if(existeVariable(getContenido())){
 
             }
+            log.WriteLine();
+            log.Write(getContenido() + " = " );
             match(Tipos.Identificador);
             match(Tipos.Asignacion);
             Expresion();
@@ -400,6 +402,7 @@ namespace Evalua
         {
             if (getClasificacion() == Tipos.Numero)
             {
+                //log.Write(getContenido() + " " + getClasificacion);
                 match(Tipos.Numero);
             }
             else if (getClasificacion() == Tipos.Identificador)
