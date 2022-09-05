@@ -9,6 +9,7 @@ namespace Evalua
     public class Lenguaje : Sintaxis
     {
         List<Variable> variables = new List<Variable>();
+        Stack<float> stack = new Stack<float>();
         public Lenguaje()
         {
 
@@ -182,6 +183,8 @@ namespace Evalua
             match(Tipos.Asignacion);
             Expresion();
             match(";");
+            log.Write(" = " + stack.Pop());
+            log.WriteLine();
         }
 
         //While -> while(Condicion) bloque de instrucciones | instruccion
@@ -378,8 +381,20 @@ namespace Evalua
         {
             if (getClasificacion() == Tipos.OperadorTermino)
             {
+                string operador = getContenido();
                 match(Tipos.OperadorTermino);
                 Termino();
+                log.Write(operador + " ");
+                float n1 = stack.Pop();
+                float n2 = stack.Pop();
+                switch(operador){
+                    case "+":
+                        stack.Push(n1 + n2);
+                        break;
+                    case "-":
+                    stack.Push(n1 - n2);
+                        break;
+                }
             }
         }
         //Termino -> Factor PorFactor
@@ -393,8 +408,20 @@ namespace Evalua
         {
             if (getClasificacion() == Tipos.OperadorFactor)
             {
+                string operador = getContenido();
                 match(Tipos.OperadorFactor);
                 Factor();
+                log.Write(operador + " ");
+                float n1 = stack.Pop();
+                float n2 = stack.Pop();
+                switch(operador){
+                    case "+":
+                        stack.Push(n1 + n2);
+                        break;
+                    case "-":
+                    stack.Push(n1 - n2);
+                        break;
+                }
             }
         }
         //Factor -> numero | identificador | (Expresion)
@@ -402,7 +429,8 @@ namespace Evalua
         {
             if (getClasificacion() == Tipos.Numero)
             {
-                //log.Write(getContenido() + " " + getClasificacion);
+                log.Write(getContenido() + " " );
+                stack.Push(float.Parse(getContenido()));
                 match(Tipos.Numero);
             }
             else if (getClasificacion() == Tipos.Identificador)
