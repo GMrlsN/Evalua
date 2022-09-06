@@ -64,7 +64,7 @@ namespace Evalua
             bool existencia = File.Exists(path);
             log = new StreamWriter("/workspace/Evalua/prueba.Log"); 
             log.AutoFlush = true;
-            log.WriteLine("Primer constructor");
+            //log.WriteLine("Primer constructor");
             log.WriteLine("Archivo: prueba.cpp");
             log.WriteLine(DateTime.Now);//Requerimiento 1:
             //Investigar como checar si un archivo existe o no existe 
@@ -86,7 +86,7 @@ namespace Evalua
             string path2 = Path.ChangeExtension(nombre, ".log");
             log = new StreamWriter(path2); 
             log.AutoFlush = true;
-            log.WriteLine("Segundo constructor");
+            //log.WriteLine("Segundo constructor");
             log.WriteLine("Archivo: "+nombre);
             log.WriteLine(DateTime.Now);
             if (File.Exists(nombre))

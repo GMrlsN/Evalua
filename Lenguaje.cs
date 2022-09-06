@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
-//Requerimiento 1.- Eliminar las dobles comillas del printf e interpretar las secuencias
+//Requerimiento 1.- Eliminar las dobles comillas del printf e interpretar las secuencias de escape
 //                  dentro de la cadena
 //Requerimiento 2.- Marcar los errores sintacticos cuando la variable no exista
-//                  que no este declarada
+//Requerimiento 3.- Modificar el valor de la variable en la asignacion
 namespace Evalua
 {
     public class Lenguaje : Sintaxis
     {
-        List<Variable> variables = new List<Variable>();
+        List <Variable> variables = new List<Variable>();
         Stack<float> stack = new Stack<float>();
+
         public Lenguaje()
         {
 
@@ -18,21 +19,28 @@ namespace Evalua
         {
 
         }
-        private void addVariable(String nombre,Variable.TipoDato tipo){
+
+        private void addVariable(String nombre,Variable.TipoDato tipo)
+        {
             variables.Add(new Variable(nombre, tipo));
         }
 
-        private void displayVariables(){
+        private void displayVariables()
+        {
             foreach (Variable v in variables)
             {
-                log.WriteLine(v.getNombre() + " - " + v.getTipo().ToString());
+                log.WriteLine(v.getNombre()+" "+v.getTipo()+" "+v.getValor());
             }
         }
-        private bool existeVariable(string nombre){
+
+        private bool existeVariable(string nombre)
+        {
             foreach (Variable v in variables)
             {
                 if (v.getNombre().Equals(nombre))
-                       return true;
+                {
+                    return true;
+                }
             }
             return false;
         }
@@ -69,11 +77,11 @@ namespace Evalua
         {
             if (getClasificacion() == Tipos.TipoDato)
             {
-                Variable.TipoDato tipo = Variable.TipoDato.Char;
-                switch(getContenido()){
-                    case "int":
-                        match("char");
-                        break;
+                Variable.TipoDato tipo = Variable.TipoDato.Char; 
+                switch (getContenido())
+                {
+                    case "int": tipo = Variable.TipoDato.Int; break;
+                    case "float": tipo = Variable.TipoDato.Float; break;
                 }
                 match(Tipos.TipoDato);
                 Lista_identificadores(tipo);
@@ -85,12 +93,15 @@ namespace Evalua
          //Lista_identificadores -> identificador (,Lista_identificadores)?
         private void Lista_identificadores(Variable.TipoDato tipo)
         {
-            if(getClasificacion() == Tipos.Identificador){
-                if(!existeVariable(getContenido())){
+            if (getClasificacion() == Tipos.Identificador)
+            {
+                if (!existeVariable(getContenido()))
+                {
                     addVariable(getContenido(), tipo);
                 }
-                else{
-                    throw new Error("Error de sintaxis, variable duplicada <" +getContenido() +"> en linea: "+linea , log);
+                else
+                {
+                    throw new Error("Error de sintaxis, variable duplicada <" +getContenido()+"> en linea: "+linea, log);
                 }
             }
             match(Tipos.Identificador);
@@ -171,19 +182,14 @@ namespace Evalua
         //Asignacion -> identificador = cadena | Expresion;
         private void Asignacion()
         {
-            //Requerimiento 2
-            //Si no existe la variable es que no fue declarada
-            //Hay que levantar la excepcion
-            if(existeVariable(getContenido())){
-
-            }
+            //Requerimiento 2.- Si no existe la variable levanta la excepcion
             log.WriteLine();
-            log.Write(getContenido() + " = " );
+            log.Write(getContenido()+" = ");
             match(Tipos.Identificador);
             match(Tipos.Asignacion);
             Expresion();
             match(";");
-            log.Write(" = " + stack.Pop());
+            log.Write("= "+stack.Pop());
             log.WriteLine();
         }
 
@@ -245,9 +251,7 @@ namespace Evalua
         //Incremento -> Identificador ++ | --
         private void Incremento()
         {
-            //Requerimiento 2
-            //Si no existe la variable es que no fue declarada
-            //Hay que levantar la excepcion
+            //Requerimiento 2.- Si no existe la variable levanta la excepcion
             match(Tipos.Identificador);
             if(getContenido() == "+")
             {
@@ -387,12 +391,13 @@ namespace Evalua
                 log.Write(operador + " ");
                 float n1 = stack.Pop();
                 float n2 = stack.Pop();
-                switch(operador){
+                switch (operador)
+                {
                     case "+":
-                        stack.Push(n1 + n2);
+                        stack.Push(n2 + n1);
                         break;
                     case "-":
-                    stack.Push(n1 - n2);
+                        stack.Push(n2 - n1);
                         break;
                 }
             }
@@ -414,12 +419,13 @@ namespace Evalua
                 log.Write(operador + " ");
                 float n1 = stack.Pop();
                 float n2 = stack.Pop();
-                switch(operador){
-                    case "+":
-                        stack.Push(n1 + n2);
+                switch (operador)
+                {
+                    case "*":
+                        stack.Push(n2 * n1);
                         break;
-                    case "-":
-                    stack.Push(n1 - n2);
+                    case "/":
+                        stack.Push(n2 / n1);
                         break;
                 }
             }
@@ -435,11 +441,7 @@ namespace Evalua
             }
             else if (getClasificacion() == Tipos.Identificador)
             {
-                //Requerimiento 2
-                //Si no existe la variable es que no fue declarada
-                //Hay que levantar la excepcion//Requerimiento 2
-                //Si no existe la variable es que no fue declarada
-                //Hay que levantar la excepcion
+                //Requerimiento 2.- Si no existe la variable levanta la excepcion
                 match(Tipos.Identificador);
             }
             else
