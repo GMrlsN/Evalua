@@ -1,9 +1,9 @@
 Archivo: prueba.cpp
-9/6/2022 2:32:46 PM
+9/6/2022 2:50:40 PM
 
 a = 3 5 + 8 * 10 4 - 2 / - = 61
 resultado Float 0
-a Int 0
+a Int 61
 opcion Char 0
 radio Float 0
 altura Float 0

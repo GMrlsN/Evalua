@@ -45,7 +45,13 @@ namespace Evalua
             return false;
         }
         private void modificaValor(string nombre, float nuevoValor){
-            
+            foreach (Variable v in variables)
+            {
+                if (v.getNombre().Equals(nombre))
+                {
+                    v.setValor(nuevoValor);
+                }
+            }
         }
         //Programa  -> Librerias? Variables? Main
         public void Programa()
