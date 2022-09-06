@@ -44,6 +44,9 @@ namespace Evalua
             }
             return false;
         }
+        private void modificaValor(string nombre, float nuevoValor){
+            
+        }
         //Programa  -> Librerias? Variables? Main
         public void Programa()
         {
@@ -185,12 +188,15 @@ namespace Evalua
             //Requerimiento 2.- Si no existe la variable levanta la excepcion
             log.WriteLine();
             log.Write(getContenido()+" = ");
+            string nombre = getContenido();
             match(Tipos.Identificador);
             match(Tipos.Asignacion);
             Expresion();
             match(";");
-            log.Write("= "+stack.Pop());
+            float resultado = stack.Pop();
+            log.Write("= "+ resultado);
             log.WriteLine();
+            modificaValor(nombre, resultado);
         }
 
         //While -> while(Condicion) bloque de instrucciones | instruccion
