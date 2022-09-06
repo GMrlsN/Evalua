@@ -191,6 +191,7 @@ namespace Evalua
         //Asignacion -> identificador = cadena | Expresion;
         private void Asignacion()
         {
+            if(existeVariable(getContenido())){
             //Requerimiento 2.- Si no existe la variable levanta la excepcion
             log.WriteLine();
             log.Write(getContenido()+" = ");
@@ -203,6 +204,11 @@ namespace Evalua
             log.Write("= "+ resultado);
             log.WriteLine();
             modificaValor(nombre, resultado);
+            }
+            else
+                {
+                    throw new Error("Error de sintaxis, variable <" +getContenido()+"> no existe en linea: "+linea, log);
+                }
         }
 
         //While -> while(Condicion) bloque de instrucciones | instruccion
