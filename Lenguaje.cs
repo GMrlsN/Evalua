@@ -206,7 +206,7 @@ namespace Evalua
         private void Asignacion()
         {
             if(existeVariable(getContenido())){
-            //Requerimiento 2.- Si no existe la variable levanta la excepcion
+            //Requerimiento 2.- Si no existe la variable levanta la excepcion  --Listo
             log.WriteLine();
             log.Write(getContenido()+" = ");
             string nombre = getContenido();
@@ -284,10 +284,10 @@ namespace Evalua
         private void Incremento()
         {
             string variable = getContenido();
-            //Requerimiento 2.- Si no existe la variable levanta la excepcion
-            if(existeVariable(getContenido())){
+            //Requerimiento 2.- Si no existe la variable levanta la excepcion  --Listo
+            if(existeVariable(variable)){
                 match(Tipos.Identificador);
-                if(getContenido() == "+")
+                if( getContenido() == "++")
                 {
                     match("++");
                     modificaValor(variable, getValor(variable) + 1);
@@ -295,6 +295,7 @@ namespace Evalua
                 else
                 {
                     match("--");
+                    modificaValor(variable, getValor(variable) - 1);
                 }
             }
             else
@@ -390,7 +391,7 @@ namespace Evalua
 
         //Printf -> printf(cadena o expresion); 
         private void Printf()
-        {//Requerimiento 1.- quitar las comillas y reconocer las secuencias de escape
+        {//Requerimiento 1.- quitar las comillas y reconocer las secuencias de escape  --Listo
             match("printf");
             match("(");
             if(getClasificacion() == Tipos.Cadena){
@@ -515,7 +516,7 @@ namespace Evalua
             }
             else if (getClasificacion() == Tipos.Identificador)
             {
-                //Requerimiento 2.- Si no existe la variable levanta la excepcion
+                //Requerimiento 2.- Si no existe la variable levanta la excepcion --Listo
                 if(existeVariable(getContenido())){
                     log.Write(getContenido() + " " );
                     stack.Push(getValor(getContenido()));

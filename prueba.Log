@@ -1,14 +1,17 @@
 Archivo: prueba.cpp
-9/7/2022 10:24:37 PM
+9/7/2022 11:33:28 PM
 
 x = 10 = 10
 
-a = 0 = 0
-a 10 3 5 + 8 * x 4 - 2 / - 
+a = 3 5 + 8 * x 4 - 2 / - = 61
+
+i = 0 = 0
+i 10 3 5 + 8 * x 4 - 2 / - 
 Variables: 
 resultado Float 0
-a Int 0
+a Int 61
 b Int 0
+i Int 1
 opcion Char 0
 radio Float 0
 altura Float 0
