@@ -12,6 +12,8 @@ void main()
     printf("hola mundo\tacabo de insertar un tabulador\ny ahora una nueva linea\n");
     printf("Resultado = ");
     x = 10;
-    x++;
+    for(a = 0; a > 10; a--){
+
+    }
     printf( (3 + 5)*8 - (x - 4)/2);
 }

@@ -285,16 +285,23 @@ namespace Evalua
         {
             string variable = getContenido();
             //Requerimiento 2.- Si no existe la variable levanta la excepcion
-            match(Tipos.Identificador);
-            if(getContenido() == "+")
-            {
-                match("++");
-                modificaValor(variable, getValor(variable) + 1);
+            if(existeVariable(getContenido())){
+                match(Tipos.Identificador);
+                if(getContenido() == "+")
+                {
+                    match("++");
+                    modificaValor(variable, getValor(variable) + 1);
+                }
+                else
+                {
+                    match("--");
+                }
             }
             else
             {
-                match("--");
+                throw new Error("Error de sintaxis, variable <" +getContenido()+"> no existe en linea: "+linea, log);
             }
+            
         }
 
         //Switch -> switch (Expresion) {Lista de casos} | (default: )
@@ -509,9 +516,15 @@ namespace Evalua
             else if (getClasificacion() == Tipos.Identificador)
             {
                 //Requerimiento 2.- Si no existe la variable levanta la excepcion
-                log.Write(getContenido() + " " );
-                stack.Push(getValor(getContenido()));
-                match(Tipos.Identificador);
+                if(existeVariable(getContenido())){
+                    log.Write(getContenido() + " " );
+                    stack.Push(getValor(getContenido()));
+                    match(Tipos.Identificador);
+                }
+                else
+                {
+                    throw new Error("Error de sintaxis, variable <" +getContenido()+"> no existe en linea: "+linea, log);
+                }
             }
             else
             {
