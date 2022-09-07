@@ -1,10 +1,12 @@
 Archivo: prueba.cpp
-9/7/2022 1:21:11 AM
+9/7/2022 2:45:26 PM
 
-a = 3 5 + 8 * 10 4 - 2 / - = 61
+x = 10 = 10
+3 5 + 8 * x 4 - 2 / - 
+Variables: 
 resultado Float 0
-a Int 61
+a Int 0
 opcion Char 0
 radio Float 0
 altura Float 0
-x Float 0
+x Float 10
