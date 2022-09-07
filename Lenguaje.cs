@@ -363,10 +363,33 @@ namespace Evalua
 
         //Printf -> printf(cadena);
         private void Printf()
-        {
+        {//Requerimiento 1.- quitar las comillas y reconocer las secuencias de escape
             match("printf");
             match("(");
-            Console.Write(getContenido());
+            string cadena = getContenido().Substring(1,getContenido().Length - 2);
+            char [] cad = new char[cadena.Length];
+            for (int i = 0; i < cadena.Length; i++){
+                if (cadena[i] == '\\')
+                {
+                    switch (cadena[i+1]){
+                        case 'a': cad[i] = '\a'; i++; break;
+                        case 'b': cad[i] = '\b'; i++; break;
+                        case 'f': cad[i] = '\f'; i++; break;
+                        case 'n': cad[i] = '\n'; i++; break;
+                        case 'r': cad[i] = '\r'; i++; break;
+                        case 't': cad[i] = '\t'; i++; break;
+                        case 'v': cad[i] = '\v'; i++; break;
+                        case '\\': cad[i] = '\\'; i++; break;
+                        case '\'': cad[i] = '\''; i++; break;
+                        case '\"': cad[i] = '\"'; i++; break;
+                    }
+                }
+                else{
+                    cad[i] = cadena[i];
+                }
+            }
+            cadena = new string(cad);
+            Console.Write(cadena);
             match(Tipos.Cadena);
             match(")");
             match(";");
