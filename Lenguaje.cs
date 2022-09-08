@@ -438,13 +438,20 @@ namespace Evalua
             match(Tipos.Cadena);
             match(",");
             match("&");
-            //Requerimiento 2.- Si no existe la variable levanta la excepcion
+            //Requerimiento 2.- Si no existe la variable levanta la excepcion --Listo
+            if(existeVariable(getContenido())){
             string val = "" + Console.ReadLine();
             //Requerimiento 5.- Modificar el valor de la variable
             modificaValor(getContenido(),float.Parse(val));
+            
             match(Tipos.Identificador);
             match(")");
             match(";");
+            }
+            else
+            {
+                throw new Error("Error de sintaxis, variable <" +getContenido()+"> no existe en linea: "+linea, log);
+            }
         }
 
         //Main      -> void main() Bloque de instrucciones
