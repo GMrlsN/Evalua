@@ -1,18 +1,12 @@
 Archivo: prueba.cpp
-9/7/2022 11:33:28 PM
+9/8/2022 2:39:10 PM
 
-x = 10 = 10
+pi = 3.141592653589793 = 3.1415927
 
-a = 3 5 + 8 * x 4 - 2 / - = 61
-
-i = 0 = 0
-i 10 3 5 + 8 * x 4 - 2 / - 
+area = pi radio radio * * = 50.265484
+area 
 Variables: 
 resultado Float 0
-a Int 61
-b Int 0
-i Int 1
-opcion Char 0
-radio Float 0
-altura Float 0
-x Float 10
+area Float 50.265484
+radio Float 4
+pi Float 3.1415927

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 //Requerimiento 3.- Modificar el valor de la variable en la asignacion
 //Requerimiento 4.- Obtener el valor de la variable cuando se requiera y programar el metodo 
 //                  getValor
+//Requerimiento 5.- Modificar el valor de la variable en el scanf
 namespace Evalua
 {
     public class Lenguaje : Sintaxis
@@ -435,6 +436,13 @@ namespace Evalua
             match("scanf");
             match("(");
             match(Tipos.Cadena);
+            match(",");
+            match("&");
+            //Requerimiento 2.- Si no existe la variable levanta la excepcion
+            string val = "" + Console.ReadLine();
+            //Requerimiento 5.- Modificar el valor de la variable
+            modificaValor(getContenido(),float.Parse(val));
+            match(Tipos.Identificador);
             match(")");
             match(";");
         }
