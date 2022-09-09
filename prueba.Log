@@ -1,11 +1,18 @@
 Archivo: prueba.cpp
-9/9/2022 2:36:40 PM
+9/9/2022 2:45:19 PM
 
 pi = 3.141592653589793 = 3.1415927
 
 d = 4 = 4
 
-area = pi radio radio * * = 50.265484
+area = pi radio radio * * = 78.53982
 area 
 d = 10 = 10
-d 20 Error de sintaxis, variable <x> no existe en linea: 44
+d 20 
+Variables: 
+area Float 78.53982
+radio Float 5
+pi Float 3.1415927
+resultado Float 0
+a Int 0
+d Int 11

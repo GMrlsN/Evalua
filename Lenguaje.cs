@@ -207,23 +207,23 @@ namespace Evalua
         private void Asignacion()
         {
             if(existeVariable(getContenido())){
-            //Requerimiento 2.- Si no existe la variable levanta la excepcion  --Listo
-            log.WriteLine();
-            log.Write(getContenido()+" = ");
-            string nombre = getContenido();
-            match(Tipos.Identificador);
-            match(Tipos.Asignacion);
-            Expresion();
-            match(";");
-            float resultado = stack.Pop();
-            log.Write("= "+ resultado);
-            log.WriteLine();
-            modificaValor(nombre, resultado);
+                //Requerimiento 2.- Si no existe la variable levanta la excepcion  --Listo
+                log.WriteLine();
+                log.Write(getContenido()+" = ");
+                string nombre = getContenido();
+                match(Tipos.Identificador);
+                match(Tipos.Asignacion);
+                Expresion();
+                match(";");
+                float resultado = stack.Pop();
+                log.Write("= "+ resultado);
+                log.WriteLine();
+                modificaValor(nombre, resultado);
             }
             else
-                {
-                    throw new Error("Error de sintaxis, variable <" +getContenido()+"> no existe en linea: "+linea, log);
-                }
+            {
+                throw new Error("Error de sintaxis, variable <" +getContenido()+"> no existe en linea: "+linea, log);
+            }
         }
 
         //While -> while(Condicion) bloque de instrucciones | instruccion
@@ -233,7 +233,7 @@ namespace Evalua
             match("(");
             Condicion();
             match(")");
-             if (getContenido() == "{") 
+            if (getContenido() == "{") 
             {
                 BloqueInstrucciones();
             }
@@ -395,32 +395,33 @@ namespace Evalua
         {//Requerimiento 1.- quitar las comillas y reconocer las secuencias de escape  --Listo
             match("printf");
             match("(");
-            if(getClasificacion() == Tipos.Cadena){
+            if(getClasificacion() == Tipos.Cadena)
+            {
                 string cadena = getContenido().Substring(1,getContenido().Length - 2);
-            char [] cad = new char[cadena.Length];
-            for (int i = 0; i < cadena.Length; i++){
-                if (cadena[i] == '\\')
-                {
-                    switch (cadena[i+1]){
-                        case 'a': cad[i] = '\a'; i++; break;
-                        case 'b': cad[i] = '\b'; i++; break;
-                        case 'f': cad[i] = '\f'; i++; break;
-                        case 'n': cad[i] = '\n'; i++; break;
-                        case 'r': cad[i] = '\r'; i++; break;
-                        case 't': cad[i] = '\t'; i++; break;
-                        case 'v': cad[i] = '\v'; i++; break;
-                        case '\\': cad[i] = '\\'; i++; break;
-                        case '\'': cad[i] = '\''; i++; break;
-                        case '\"': cad[i] = '\"'; i++; break;
+                char [] cad = new char[cadena.Length];
+                for (int i = 0; i < cadena.Length; i++){
+                    if (cadena[i] == '\\')
+                    {
+                        switch (cadena[i+1]){
+                            case 'a': cad[i] = '\a'; i++; break;
+                            case 'b': cad[i] = '\b'; i++; break;
+                            case 'f': cad[i] = '\f'; i++; break;
+                            case 'n': cad[i] = '\n'; i++; break;
+                            case 'r': cad[i] = '\r'; i++; break;
+                            case 't': cad[i] = '\t'; i++; break;
+                            case 'v': cad[i] = '\v'; i++; break;
+                            case '\\': cad[i] = '\\'; i++; break;
+                            case '\'': cad[i] = '\''; i++; break;
+                            case '\"': cad[i] = '\"'; i++; break;
+                        }
+                    }
+                    else{
+                        cad[i] = cadena[i];
                     }
                 }
-                else{
-                    cad[i] = cadena[i];
-                }
-            }
-            cadena = new string(cad);
-            Console.Write(cadena);
-            match(Tipos.Cadena);
+                cadena = new string(cad);
+                Console.Write(cadena);
+                match(Tipos.Cadena);
             }
             else{
                 Expresion();
@@ -440,13 +441,12 @@ namespace Evalua
             match("&");
             //Requerimiento 2.- Si no existe la variable levanta la excepcion --Listo
             if(existeVariable(getContenido())){
-            string val = "" + Console.ReadLine();
-            //Requerimiento 5.- Modificar el valor de la variable
-            modificaValor(getContenido(),float.Parse(val));
-            
-            match(Tipos.Identificador);
-            match(")");
-            match(";");
+                string val = "" + Console.ReadLine();
+                //Requerimiento 5.- Modificar el valor de la variable
+                modificaValor(getContenido(),float.Parse(val));
+                match(Tipos.Identificador);
+                match(")");
+                match(";");
             }
             else
             {
@@ -532,7 +532,8 @@ namespace Evalua
             else if (getClasificacion() == Tipos.Identificador)
             {
                 //Requerimiento 2.- Si no existe la variable levanta la excepcion --Listo
-                if(existeVariable(getContenido())){
+                if(existeVariable(getContenido()))
+                {
                     log.Write(getContenido() + " " );
                     stack.Push(getValor(getContenido()));
                     match(Tipos.Identificador);
