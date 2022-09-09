@@ -41,6 +41,5 @@ void main(){
     printf("\nHola\n");
 
     for(d = 10; d<20; d++) {
-        x = 10;
     }
 }
